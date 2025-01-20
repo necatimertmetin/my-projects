@@ -1,50 +1,35 @@
-# React + TypeScript + Vite
+# GitHub Pages Projects Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React application that displays a list of GitHub repositories from a specific user that have GitHub Pages enabled. It allows users to view the project on GitHub Pages, see the description of the repositories, and explore their respective GitHub repositories.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Dark Mode**: Toggle between light and dark modes for a more personalized viewing experience.
+- **Random Project Images**: Each repository has a random placeholder image generated for it using `fakeimg.pl`.
+- **Responsive Layout**: The layout is built with Material-UI’s Grid system, making it responsive on different screen sizes.
+- **Link to GitHub Pages Projects**: Easily access live projects hosted on GitHub Pages directly from the application.
+- **GitHub Repository Links**: Quickly navigate to the GitHub repository of each project.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React**: Frontend JavaScript library for building user interfaces.
+- **Material-UI**: A popular React UI framework that provides Material Design components.
+- **TypeScript**: A superset of JavaScript for static typing, enhancing code quality and maintainability.
+- **GitHub API**: The GitHub API is used to fetch repositories that have GitHub Pages enabled.
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+To run this project locally, follow these steps:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Prerequisites
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Node.js (v16 or higher) installed.
+- A GitHub account to view and explore the repositories.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Installation
+
+1. Clone this repository to your local machine:
+
+   ```bash
+   git clone https://github.com/<your-username>/github-pages-projects-viewer.git
+   cd github-pages-projects-viewer
