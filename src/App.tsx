@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from "react";
 import {
   Container,
-  Card,
-  CardContent,
   Typography,
-  CardActions,
-  Button,
-  CardMedia,
   CssBaseline,
   ThemeProvider,
   createTheme,
   IconButton,
-  Link,
+  Stack,
 } from "@mui/material";
-import Grid from "@mui/material/Grid2";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import ComputerCard from "./components/Card";
 
 interface Repo {
   id: number;
@@ -57,10 +52,25 @@ const App: React.FC = () => {
     setDarkMode(!darkMode);
   };
 
-  const getRandomColor = () => {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    return randomColor.padStart(6, "0");
-  };
+  const colors: (
+    | "dark"
+    | "blue"
+    | "green"
+    | "orange"
+    | "pink"
+    | "purple"
+    | "silver"
+    | "yellow"
+  )[] = [
+    "blue", // "#A9C7E1"
+    "dark", // "#333333"
+    "green", // "#B3D1C4"
+    "orange", // "#FFBDA2"
+    "pink", // "#ffcfc1"
+    "purple", // "#AAA5D3"
+    "silver", // "#C3C6C7"
+    "yellow", // "#f9ce84"
+  ];
 
   return (
     <ThemeProvider theme={theme}>
@@ -81,68 +91,47 @@ const App: React.FC = () => {
             {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </header>
+
         {repos.length === 0 ? (
           <Typography variant="body1" color="textSecondary" align="center">
             No GitHub Pages projects found.
           </Typography>
         ) : (
-          <Grid container spacing={3}>
-            {repos.map((repo) => (
-              <Grid size={4} key={repo.id}>
-                <Card
-                  sx={{
-                    transition: "transform 0.3s",
-                    "&:hover": { transform: "scale(1.05)" },
+          <Stack spacing={20}>
+            {repos.map((repo, index) => (
+              <>
+                {console.log(repo)}
+                <ComputerCard
+                  color={colors[index % colors.length]} // Cycle through the colors
+                  width={600}
+                  title={
+                    repo.name.charAt(0).toUpperCase() +
+                    repo.name.slice(1).toLowerCase()
+                  }
+                  description={repo.description || "No description provided."}
+                  iframeSrc={`https://${repo.owner.login}.github.io/${repo.name}`}
+                  buttonText1="View Repository"
+                  buttonText2="View Project"
+                  buttonAction1={() => {
+                    window.open(
+                      `https://github.com/${repo.owner.login}/${repo.name}`,
+                      "_blank",
+                      "noopener noreferrer"
+                    );
                   }}
-                >
-                  <CardMedia
-                    component="img"
-                    height="140"
-                    image={`https://fakeimg.pl/600x140/${getRandomColor()}/ffffff?text=${
-                      repo?.name
-                    }&font=bebas`}
-                    alt={repo.name}
-                  />
-                  <CardContent>
-                    <Typography component="div" variant="h6" gutterBottom>
-                      <Link
-                        href={`https://${repo.owner.login}.github.io/${repo.name}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        underline="hover"
-                        sx={{ textDecoration: "inherit", color: "inherit" }}
-                      >
-                        {repo.name.toUpperCase()}
-                      </Link>
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      {repo.description || "No description provided."}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      size="small"
-                      color="primary"
-                      href={`https://github.com/${repo.owner.login}/${repo.name}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Repository
-                    </Button>
-                    <Button
-                      size="small"
-                      color="primary"
-                      href={`https://${repo.owner.login}.github.io/${repo.name}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Project
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
+                  buttonAction2={() => {
+                    window.open(
+                      `https://${repo.owner.login}.github.io/${repo.name}`,
+                      "_blank",
+                      "noopener noreferrer"
+                    );
+                  }}
+                  isDarkMode={darkMode} // Toggle this for dark mode
+                  index={index}
+                />
+              </>
             ))}
-          </Grid>
+          </Stack>
         )}
       </Container>
     </ThemeProvider>
