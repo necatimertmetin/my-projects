@@ -133,6 +133,7 @@ function ComputerCard({
           flex={1}
           sx={{
             borderRadius: "32px",
+            overflow: "hidden",
             backgroundColor: theme.palette.background.paper,
             color: theme.palette.text.primary,
             boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)", // Soft shadow for content area
@@ -143,7 +144,6 @@ function ComputerCard({
               backgroundColor: theme.palette.primary.main,
               padding: "12px 20px",
               marginBottom: "12px",
-              borderRadius: "16px",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.05)", // Subtle shadow on title box
             }}
           >

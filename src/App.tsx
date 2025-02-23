@@ -7,6 +7,7 @@ import {
   createTheme,
   IconButton,
   Stack,
+  LinearProgress,
 } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
@@ -93,9 +94,7 @@ const App: React.FC = () => {
         </header>
 
         {repos.length === 0 ? (
-          <Typography variant="body1" color="textSecondary" align="center">
-            No GitHub Pages projects found.
-          </Typography>
+          <LinearProgress />
         ) : (
           <Stack spacing={20}>
             {repos.map((repo, index) => (
